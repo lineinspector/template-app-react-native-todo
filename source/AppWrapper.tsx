@@ -28,6 +28,20 @@ export const AppWrapper = () => {
               // Show sync errors in the console
               console.error(error);
             },
+            clientReset: {
+              mode: Realm.ClientResetMode.RecoverUnsyncedChanges,
+              onBefore: realm => {
+                // This block could be used for custom recovery, reporting, debugging etc.
+                console.log("AAA Client Reset: onBefore", realm);
+              },
+              onAfter: (beforeRealm, afterRealm) => {
+                // This block could be used for custom recovery, reporting, debugging etc.
+                console.log("AAA Client Reset: onAfter", beforeRealm, afterRealm);
+              },
+              onFallback: (_session, path) => {
+                  console.info("AAA Deleting old realm file due to sync error. Probably a breaking model change.");
+              },
+            },
           }}
           fallback={LoadingIndicator}>
           <App />

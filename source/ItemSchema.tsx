@@ -5,6 +5,7 @@ export class Item extends Realm.Object<Item> {
   isComplete!: boolean;
   summary!: string;
   owner_id!: string;
+  test1: string;
 
   static schema: Realm.ObjectSchema = {
     name: 'Item',
@@ -16,6 +17,7 @@ export class Item extends Realm.Object<Item> {
       isComplete: {type: 'bool', default: false},
       summary: 'string',
       owner_id: 'string',
+      test1: 'string?',
     },
   };
 }
